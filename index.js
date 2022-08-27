@@ -13,7 +13,6 @@ store.dispatch(fetchPost()).then(() => {
 });
 
 
-
 //app object - module scaffolding
 const app = {};
 
