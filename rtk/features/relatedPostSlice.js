@@ -1,5 +1,5 @@
 const { createSlice, createAsyncThunk } = require("@reduxjs/toolkit");
-const  fetch  = require("node-fetch");
+const fetch = require("node-fetch");
 
 const fetchRelatedPosts = createAsyncThunk(
   "relatedPost/fetchRelatedPosts",
@@ -13,9 +13,10 @@ const fetchRelatedPosts = createAsyncThunk(
 const relatedPostSLice = createSlice({
   name: "relatedPosts",
   initialState: {
+    numberOfPosts: 0,
+    url: "",
     relatedPosts: [],
     relatedPostTags: [],
-    url: "https://jsonplaceholder.typicode.com/posts?title_like=",
   },
   reducers: {
     loadRelatedPost: (state, action) => {
@@ -27,7 +28,8 @@ const relatedPostSLice = createSlice({
       .addCase("post/fetchPost/fulfilled", (state, action) => {
         state.relatedPostTags = action.payload.title.split(" ");
         state.url =
-          state.url + action.payload.title.split(" ").join("&title_like=");
+          "https://jsonplaceholder.typicode.com/posts?title_like=" +
+          action.payload.title.split(" ").join("&title_like=");
       })
       .addCase(fetchRelatedPosts.pending, (state, action) => {
         state.loading = true;
@@ -35,6 +37,7 @@ const relatedPostSLice = createSlice({
       .addCase(fetchRelatedPosts.fulfilled, (state, action) => {
         state.loading = false;
         state.relatedPosts = action.payload;
+        state.numberOfPosts = action.payload.length;
       })
       .addCase(fetchRelatedPosts.rejected, (state, action) => {
         state.loading = false;

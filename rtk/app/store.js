@@ -6,7 +6,7 @@ const { logger } = require("redux-logger");
 const store = configureStore({
   reducer: {
     post: postReducer,
-    relatedPost: relatedPostReducer,
+    relatedPosts: relatedPostReducer,
   },
   middleware: (getDefaultMiddleware) => {
     return getDefaultMiddleware().concat(logger);
