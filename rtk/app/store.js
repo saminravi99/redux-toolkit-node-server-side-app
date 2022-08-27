@@ -1,8 +1,10 @@
+//dependencies
 const { configureStore } = require("@reduxjs/toolkit");
 const postReducer = require("../features/postSlice");
 const relatedPostReducer = require("../features/relatedPostSlice");
 const { logger } = require("redux-logger");
 
+//configuring the store
 const store = configureStore({
   reducer: {
     post: postReducer,
@@ -13,4 +15,5 @@ const store = configureStore({
   },
 });
 
+//export module
 module.exports = store;

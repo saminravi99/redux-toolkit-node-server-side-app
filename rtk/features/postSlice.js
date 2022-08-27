@@ -1,6 +1,8 @@
+//dependencies
 const { createSlice, createAsyncThunk } = require("@reduxjs/toolkit");
 const  fetch  = require("node-fetch");
 
+//creating async thunk for fetching post 
 const fetchPost = createAsyncThunk("post/fetchPost", async (id) => {
   const response = await fetch(
     `https://jsonplaceholder.typicode.com/posts/${id}`
@@ -9,6 +11,7 @@ const fetchPost = createAsyncThunk("post/fetchPost", async (id) => {
   return post;
 });
 
+//creating slice for post
 const postSlice = createSlice({
   name: "post",
   initialState: {
@@ -37,5 +40,6 @@ const postSlice = createSlice({
   },
 });
 
+//export module
 module.exports = postSlice.reducer;
 module.exports.fetchPost = fetchPost;

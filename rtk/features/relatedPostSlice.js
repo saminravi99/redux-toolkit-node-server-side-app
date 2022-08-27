@@ -1,6 +1,8 @@
+//dependencies
 const { createSlice, createAsyncThunk } = require("@reduxjs/toolkit");
 const fetch = require("node-fetch");
 
+//creating async thunk for fetching post related to the post title fetched earlier
 const fetchRelatedPosts = createAsyncThunk(
   "relatedPost/fetchRelatedPosts",
   async (url) => {
@@ -10,6 +12,7 @@ const fetchRelatedPosts = createAsyncThunk(
   }
 );
 
+//creating slice for related posts
 const relatedPostSLice = createSlice({
   name: "relatedPosts",
   initialState: {
@@ -46,6 +49,7 @@ const relatedPostSLice = createSlice({
   },
 });
 
+//export module
 module.exports = relatedPostSLice.reducer;
 module.exports.fetchRelatedPosts = fetchRelatedPosts;
 
