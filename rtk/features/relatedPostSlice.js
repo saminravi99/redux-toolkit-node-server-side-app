@@ -49,14 +49,3 @@ const relatedPostSLice = createSlice({
 module.exports = relatedPostSLice.reducer;
 module.exports.fetchRelatedPosts = fetchRelatedPosts;
 
-// .addCase(fetchRelatedPosts.pending, (state, action) => {
-//         state.loading = true;
-//       })
-//       .addCase(fetchRelatedPosts.fulfilled, (state, action) => {
-//         state.loading = false;
-//         state.relatedPost = action.payload;
-//       })
-//       .addCase(fetchRelatedPosts.rejected, (state, action) => {
-//         state.loading = false;
-//         state.error = action.error;
-//       })
