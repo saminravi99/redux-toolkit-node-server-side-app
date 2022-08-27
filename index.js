@@ -8,7 +8,7 @@ store.subscribe(() => {
   console.log(JSON.stringify(store.getState(), null, 2));
 });
 
-store.dispatch(fetchPost()).then(() => {
+store.dispatch(fetchPost(57)).then(() => {
   store.dispatch(fetchRelatedPosts(store.getState().relatedPost.url));
 });
 

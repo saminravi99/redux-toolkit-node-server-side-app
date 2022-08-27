@@ -1,9 +1,9 @@
 const { createSlice, createAsyncThunk } = require("@reduxjs/toolkit");
 const  fetch  = require("node-fetch");
 
-const fetchPost = createAsyncThunk("post/fetchPost", async () => {
+const fetchPost = createAsyncThunk("post/fetchPost", async (id) => {
   const response = await fetch(
-    `https://jsonplaceholder.typicode.com/posts/54`
+    `https://jsonplaceholder.typicode.com/posts/${id}`
   );
   const post = await response.json();
   return post;
@@ -15,7 +15,6 @@ const postSlice = createSlice({
     post: [],
     loading: false,
     error: null,
-    titleTags: [],
   },
   reducers: {
     loadPost: (state, action) => {
@@ -30,7 +29,6 @@ const postSlice = createSlice({
       .addCase(fetchPost.fulfilled, (state, action) => {
         state.loading = false;
         state.post = action.payload;
-        state.titleTags = action.payload.title.split(" ");
       })
       .addCase(fetchPost.rejected, (state, action) => {
         state.loading = false;

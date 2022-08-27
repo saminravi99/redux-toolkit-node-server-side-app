@@ -34,7 +34,7 @@ const relatedPostSLice = createSlice({
       })
       .addCase(fetchRelatedPosts.fulfilled, (state, action) => {
         state.loading = false;
-        state.relatedPosts = [...action.payload];
+        state.relatedPosts = action.payload;
       })
       .addCase(fetchRelatedPosts.rejected, (state, action) => {
         state.loading = false;
